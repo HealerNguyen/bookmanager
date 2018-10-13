@@ -75,25 +75,33 @@
 		>
 			<v-toolbar-title style="width: 300px" class="ml-0">
 				<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-				<span class="hidden-sm-and-down">Mini library</span>
+				<span class="hidden-sm-and-down">Mini library</span> &nbsp;
+				<v-tooltip bottom>
+					<v-icon slot="activator" class="hidden-sm-and-down" @click="returnHome()">visibility</v-icon>
+					<span>Trang chu</span>
+				</v-tooltip>
 			</v-toolbar-title>
 			
 			<v-spacer></v-spacer>
 
-			<v-toolbar-items class="hidden-sm-and-down">
-				<!-- <v-btn flat v-bind:to="{name: 'index'}">Trang chủ</v-btn> -->
+			<v-toolbar-items class="hidden-sm-and-down" v-if="authUser.role != 1">
 				<v-btn flat v-bind:to="{name: 'vi-freebies'}">Freebies</v-btn>
 				<v-btn flat v-bind:to="{name: 'vi-books'}">Sách</v-btn>
 				<v-btn flat v-bind:to="{name: 'vi-categories'}">Chuyên mục</v-btn>
 				<v-btn flat v-bind:to="{name: 'vi-introduce'}">Giới thiệu</v-btn>
 			</v-toolbar-items>
-			
-			<v-btn icon v-if="isLoggedIn">
-				<v-icon>apps</v-icon>
-			</v-btn>
-			<v-btn icon v-if="isLoggedIn">
-				<v-icon>notifications</v-icon>
-			</v-btn>
+			<v-tooltip bottom>
+				<v-btn slot="activator" icon v-if="isLoggedIn">
+					<v-icon>apps</v-icon>
+				</v-btn>
+				<span>Ung dung</span>
+			</v-tooltip>
+			<v-tooltip bottom>
+				<v-btn slot="activator" icon v-if="isLoggedIn">
+					<v-icon>notifications</v-icon>
+				</v-btn>
+				<span>Thong bao</span>
+			</v-tooltip>
 			
 			<v-menu
 				transition="slide-x-transition"
@@ -164,8 +172,6 @@
 		<v-content id="scroll-top">
 			<nuxt/>
 		</v-content>
-		
-		
 	</v-app>
 </template>
 <!--vai tro nhu file App.vue, chay vao day trc ,load scss, js -->
@@ -225,6 +231,9 @@ export default {
 						this.$router.push('/')
 					})
 				})
+			},
+			returnHome() {
+				this.$router.push({name: 'index'})
 			}
 		},
 		computed: {

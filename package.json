@@ -39,6 +39,7 @@
         "vue": "^2.5.17",
         "vue-particles": "^1.0.9",
         "vue-scrollto": "^2.13.0",
+        "vue2-google-maps": "^0.10.2",
         "vuetify": "^1.2.2",
         "vuex": "^3.0.1",
         "window": "^4.2.5"

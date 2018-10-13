@@ -41,6 +41,7 @@ module.exports = {
     plugins: [
         { src: '~/plugins/vue-particles', ssr: false },
         { src: '~/plugins/vuetify' },
+        { src: '~/plugins/vue2-google-maps' },
         //{ src: '~/plugins/globalMixin' }
     ],
     /*
@@ -60,7 +61,7 @@ module.exports = {
         /*
          ** Run ESLint on save
          */
-        vendor: ['axios', 'clientjs'],
+        vendor: ['axios', 'clientjs', 'vue2-google-maps'],
         extend(config, { isDev, isClient }) {
             if (isDev && isClient) {
                 config.module.rules.push({
@@ -70,6 +71,17 @@ module.exports = {
                     exclude: /(node_modules)/
                 })
             }
+            // if (!isClient) {
+            //     // This instructs Webpack to include `vue2-google-maps`'s Vue files
+            //     // for server-side rendering
+            //     config.externals.splice(0, 0, function (context, request, callback) {
+            //         if (/^vue2-google-maps($|\/)/.test(request)) {
+            //             callback(null, false)
+            //         } else {
+            //             callback()
+            //         }
+            //     })
+            // }
         }
     },
     serverMiddleware: [

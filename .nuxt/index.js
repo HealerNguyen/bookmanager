@@ -14,6 +14,7 @@ import { createStore } from './store.js'
 /* Plugins */
 import nuxt_plugin_vueparticles_b91bd920 from 'nuxt_plugin_vueparticles_b91bd920' // Source: ../plugins/vue-particles (ssr: false)
 import nuxt_plugin_vuetify_165b1c58 from 'nuxt_plugin_vuetify_165b1c58' // Source: ../plugins/vuetify
+import nuxt_plugin_vue2googlemaps_94a82780 from 'nuxt_plugin_vue2googlemaps_94a82780' // Source: ../plugins/vue2-google-maps
 
 
 // Component: <no-ssr>
@@ -153,6 +154,7 @@ async function createApp (ssrContext) {
   // Plugin execution
   
   if (typeof nuxt_plugin_vuetify_165b1c58 === 'function') await nuxt_plugin_vuetify_165b1c58(app.context, inject)
+  if (typeof nuxt_plugin_vue2googlemaps_94a82780 === 'function') await nuxt_plugin_vue2googlemaps_94a82780(app.context, inject)
   
   if (process.browser) { 
     if (typeof nuxt_plugin_vueparticles_b91bd920 === 'function') await nuxt_plugin_vueparticles_b91bd920(app.context, inject)
