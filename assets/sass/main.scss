@@ -1,0 +1,226 @@
+//@import 'body.scss';
+// cho phep import file scss khac trong assets vao trong main.scss
+body {
+    font-size: 30px;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently*/
+}
+.font-size-14 {
+    font-size: 14px !important;
+}
+.center-content {
+    text-align: center;
+}
+button {
+    outline: none !important;
+}
+
+nav {
+    background: #0ab452 !important;
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .2), 0 0px 0px 0 rgba(0, 0, 0, .14), 0 0px 0px 0 rgba(0, 0, 0, .12) !important;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .2), 0 0px 0px 0 rgba(0, 0, 0, .14), 0 0px 0px 0 rgba(0, 0, 0, .12) !important;
+}
+
+.hone-box {
+    height: 100%;
+    max-width: 100%;
+}
+
+.home-partical {
+    right: 0;
+    background: -webkit-gradient(linear, right bottom, left top, from(#09b3af), to(#0ab452)) !important;
+    background: linear-gradient(to top, #09b3af, #0ab452) !important;
+    width: 100% !important;
+    position: fixed;
+    height: 100%;
+}
+
+// webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+//     box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+.home-asset-logo {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+}
+
+.VueToNuxtLogo {
+    display: inline-block;
+    animation: turn 2s linear forwards 1s;
+    transform: rotateX(180deg);
+    position: relative;
+    overflow: hidden;
+    height: 180px;
+    width: 245px;
+}
+
+.Triangle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+.Triangle--one {
+    border-left: 105px solid transparent;
+    border-right: 105px solid transparent;
+    border-bottom: 180px solid #41B883;
+}
+
+.Triangle--two {
+    top: 30px;
+    left: 35px;
+    animation: goright 0.5s linear forwards 3.5s;
+    border-left: 87.5px solid transparent;
+    border-right: 87.5px solid transparent;
+    border-bottom: 150px solid #3B8070;
+}
+
+.Triangle--three {
+    top: 60px;
+    left: 35px;
+    animation: goright 0.5s linear forwards 3.5s;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 120px solid #35495E;
+}
+
+.Triangle--four {
+    top: 120px;
+    left: 70px;
+    animation: godown 0.5s linear forwards 3s;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 60px solid #fff;
+}
+
+@keyframes turn {
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes godown {
+    100% {
+        top: 180px;
+    }
+}
+
+@keyframes goright {
+    100% {
+        left: 70px;
+    }
+}
+
+.btn-start, .btn-scroll-top {
+    background-color: #35495E !important;
+}
+.btn-scroll-top {
+    bottom: 10px;
+}
+
+a {
+    text-decoration: none !important;
+}
+.custom-loader {
+    animation: loader 1s infinite;
+    display: flex;
+}
+@-moz-keyframes loader {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes loader {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-o-keyframes loader {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes loader {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@media only screen and (max-width: 600px) {
+    .btn-mobile-start {
+        padding:0 39px !important;
+    }
+}
+
+
+
+// h1,h2,h2,h4,h5,h6,b,p,span,i {
+//     color: #555;
+// }
+
+
+h3.title-manage {
+    font-size: 16px;
+    color: #555555;
+    text-transform: uppercase;
+}
+.sum-record {
+    color: white;
+    background-color: #0ab452;
+    padding: 3px;
+    border-radius: 6px;
+
+}
+.btn-green {
+    background-color: #0ab452 !important;
+}
+.card-green {
+    background-color: #0ab452 !important;
+    padding: 30px;
+    h3 {
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+}
+table th {
+    color: #555555 !important;
+    font-size: 14px;
+}
+.btn-action {
+    position: relative;
+    width: 40px;
+    text-align: center;
+    margin-right: 0;
+    display: inline-block;
+    left: 0 !important;
+}
+.btn-for-action {
+    width: 27px !important;
+    height: 28px !important;
+    //background-color: #0ab452 !important;
+}
+.btn-sum {
+    border-radius: 25px !important;
+}
