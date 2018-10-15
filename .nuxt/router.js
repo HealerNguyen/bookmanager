@@ -7,25 +7,26 @@ const _3d5f08ea = () => import('../pages/login.vue' /* webpackChunkName: "pages/
 const _117511ad = () => import('../pages/users/index.vue' /* webpackChunkName: "pages/users/index" */).then(m => m.default || m)
 const _3db6d82e = () => import('../pages/document.vue' /* webpackChunkName: "pages/document" */).then(m => m.default || m)
 const _16b3da34 = () => import('../pages/admin/index.vue' /* webpackChunkName: "pages/admin/index" */).then(m => m.default || m)
-const _676d1012 = () => import('../pages/admin/book.vue' /* webpackChunkName: "pages/admin/book" */).then(m => m.default || m)
-const _44eae7d9 = () => import('../pages/admin/user.vue' /* webpackChunkName: "pages/admin/user" */).then(m => m.default || m)
-const _6f7a86de = () => import('../pages/vi/introduce.vue' /* webpackChunkName: "pages/vi/introduce" */).then(m => m.default || m)
-const _29dad59c = () => import('../pages/vi/books.vue' /* webpackChunkName: "pages/vi/books" */).then(m => m.default || m)
-const _3c625819 = () => import('../pages/admin/author.vue' /* webpackChunkName: "pages/admin/author" */).then(m => m.default || m)
-const _6cb4595e = () => import('../pages/category/add.vue' /* webpackChunkName: "pages/category/add" */).then(m => m.default || m)
-const _178706e8 = () => import('../pages/admin/category.vue' /* webpackChunkName: "pages/admin/category" */).then(m => m.default || m)
-const _6c728749 = () => import('../pages/book/add.vue' /* webpackChunkName: "pages/book/add" */).then(m => m.default || m)
-const _4dc9d6bc = () => import('../pages/users/add.vue' /* webpackChunkName: "pages/users/add" */).then(m => m.default || m)
 const _aa0eee70 = () => import('../pages/users/account.vue' /* webpackChunkName: "pages/users/account" */).then(m => m.default || m)
-const _903cfbc2 = () => import('../pages/vi/freebies.vue' /* webpackChunkName: "pages/vi/freebies" */).then(m => m.default || m)
-const _0eb06d9a = () => import('../pages/vi/categories.vue' /* webpackChunkName: "pages/vi/categories" */).then(m => m.default || m)
 const _4afc9b8e = () => import('../pages/users/logic.vue' /* webpackChunkName: "pages/users/logic" */).then(m => m.default || m)
+const _6f7a86de = () => import('../pages/vi/introduce.vue' /* webpackChunkName: "pages/vi/introduce" */).then(m => m.default || m)
+const _6c728749 = () => import('../pages/book/add.vue' /* webpackChunkName: "pages/book/add" */).then(m => m.default || m)
+const _6cb4595e = () => import('../pages/category/add.vue' /* webpackChunkName: "pages/category/add" */).then(m => m.default || m)
 const _5c8b166b = () => import('../pages/author/add.vue' /* webpackChunkName: "pages/author/add" */).then(m => m.default || m)
-const _23a413db = () => import('../pages/author/edit/_id.vue' /* webpackChunkName: "pages/author/edit/_id" */).then(m => m.default || m)
+const _44eae7d9 = () => import('../pages/admin/user.vue' /* webpackChunkName: "pages/admin/user" */).then(m => m.default || m)
+const _178706e8 = () => import('../pages/admin/category.vue' /* webpackChunkName: "pages/admin/category" */).then(m => m.default || m)
+const _3c625819 = () => import('../pages/admin/author.vue' /* webpackChunkName: "pages/admin/author" */).then(m => m.default || m)
+const _29dad59c = () => import('../pages/vi/books.vue' /* webpackChunkName: "pages/vi/books" */).then(m => m.default || m)
+const _903cfbc2 = () => import('../pages/vi/freebies.vue' /* webpackChunkName: "pages/vi/freebies" */).then(m => m.default || m)
+const _4dc9d6bc = () => import('../pages/users/add.vue' /* webpackChunkName: "pages/users/add" */).then(m => m.default || m)
+const _676d1012 = () => import('../pages/admin/book.vue' /* webpackChunkName: "pages/admin/book" */).then(m => m.default || m)
+const _0eb06d9a = () => import('../pages/vi/categories.vue' /* webpackChunkName: "pages/vi/categories" */).then(m => m.default || m)
 const _75d5de2a = () => import('../pages/users/edit/_id.vue' /* webpackChunkName: "pages/users/edit/_id" */).then(m => m.default || m)
 const _f4930486 = () => import('../pages/book/edit/_id.vue' /* webpackChunkName: "pages/book/edit/_id" */).then(m => m.default || m)
+const _23a413db = () => import('../pages/author/edit/_id.vue' /* webpackChunkName: "pages/author/edit/_id" */).then(m => m.default || m)
 const _039db0c8 = () => import('../pages/category/edit/_id.vue' /* webpackChunkName: "pages/category/edit/_id" */).then(m => m.default || m)
 const _097249f8 = () => import('../pages/author/_id.vue' /* webpackChunkName: "pages/author/_id" */).then(m => m.default || m)
+const _26fd31b2 = () => import('../pages/book/_slug.vue' /* webpackChunkName: "pages/book/_slug" */).then(m => m.default || m)
 const _26f4c956 = () => import('../pages/users/_id.vue' /* webpackChunkName: "pages/users/_id" */).then(m => m.default || m)
 const _17a8d874 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
 
@@ -108,64 +109,9 @@ export function createRouter () {
 			name: "admin"
 		},
 		{
-			path: "/admin/book",
-			component: _676d1012,
-			name: "admin-book"
-		},
-		{
-			path: "/admin/user",
-			component: _44eae7d9,
-			name: "admin-user"
-		},
-		{
-			path: "/vi/introduce",
-			component: _6f7a86de,
-			name: "vi-introduce"
-		},
-		{
-			path: "/vi/books",
-			component: _29dad59c,
-			name: "vi-books"
-		},
-		{
-			path: "/admin/author",
-			component: _3c625819,
-			name: "admin-author"
-		},
-		{
-			path: "/category/add",
-			component: _6cb4595e,
-			name: "category-add"
-		},
-		{
-			path: "/admin/category",
-			component: _178706e8,
-			name: "admin-category"
-		},
-		{
-			path: "/book/add",
-			component: _6c728749,
-			name: "book-add"
-		},
-		{
-			path: "/users/add",
-			component: _4dc9d6bc,
-			name: "users-add"
-		},
-		{
 			path: "/users/account",
 			component: _aa0eee70,
 			name: "users-account"
-		},
-		{
-			path: "/vi/freebies",
-			component: _903cfbc2,
-			name: "vi-freebies"
-		},
-		{
-			path: "/vi/categories",
-			component: _0eb06d9a,
-			name: "vi-categories"
 		},
 		{
 			path: "/users/logic",
@@ -173,14 +119,64 @@ export function createRouter () {
 			name: "users-logic"
 		},
 		{
+			path: "/vi/introduce",
+			component: _6f7a86de,
+			name: "vi-introduce"
+		},
+		{
+			path: "/book/add",
+			component: _6c728749,
+			name: "book-add"
+		},
+		{
+			path: "/category/add",
+			component: _6cb4595e,
+			name: "category-add"
+		},
+		{
 			path: "/author/add",
 			component: _5c8b166b,
 			name: "author-add"
 		},
 		{
-			path: "/author/edit/:id?",
-			component: _23a413db,
-			name: "author-edit-id"
+			path: "/admin/user",
+			component: _44eae7d9,
+			name: "admin-user"
+		},
+		{
+			path: "/admin/category",
+			component: _178706e8,
+			name: "admin-category"
+		},
+		{
+			path: "/admin/author",
+			component: _3c625819,
+			name: "admin-author"
+		},
+		{
+			path: "/vi/books",
+			component: _29dad59c,
+			name: "vi-books"
+		},
+		{
+			path: "/vi/freebies",
+			component: _903cfbc2,
+			name: "vi-freebies"
+		},
+		{
+			path: "/users/add",
+			component: _4dc9d6bc,
+			name: "users-add"
+		},
+		{
+			path: "/admin/book",
+			component: _676d1012,
+			name: "admin-book"
+		},
+		{
+			path: "/vi/categories",
+			component: _0eb06d9a,
+			name: "vi-categories"
 		},
 		{
 			path: "/users/edit/:id?",
@@ -193,6 +189,11 @@ export function createRouter () {
 			name: "book-edit-id"
 		},
 		{
+			path: "/author/edit/:id?",
+			component: _23a413db,
+			name: "author-edit-id"
+		},
+		{
 			path: "/category/edit/:id?",
 			component: _039db0c8,
 			name: "category-edit-id"
@@ -201,6 +202,11 @@ export function createRouter () {
 			path: "/author/:id?",
 			component: _097249f8,
 			name: "author-id"
+		},
+		{
+			path: "/book/:slug?",
+			component: _26fd31b2,
+			name: "book-slug"
 		},
 		{
 			path: "/users/:id",

@@ -23,21 +23,20 @@
             <v-flex xs12 sm4>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Ve chung toi</div>
+                  <div class="headline">Về chúng tôi</div>
                 </v-card-title>
                 <v-card-text>
-                  aaaaaaaaaaaa 
+                  <p class="subheading">
+                   Website cho phép bạn tìm kiếm các đầu sách và mượn sách online</p>
                 </v-card-text>
               </v-card>
             </v-flex>
             <v-flex xs12 sm4 offset-sm1>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Lien he chung toi</div>
+                  <div class="headline">Thông tin liên hệ</div>
                 </v-card-title>
-                <v-card-text>
-                  bbb
-                </v-card-text>
+                
                 <v-list class="transparent">
                   <v-list-tile>
                     <v-list-tile-action>

@@ -54,6 +54,16 @@
 							
 							color="green"
 						></v-text-field>
+						<v-text-field 
+							name="slug"
+							v-model="category.slug" 
+							label="Nhập slug sách" 
+							type="text"
+							:rules="slugRules"
+							required
+							readonly
+							color="green"
+						></v-text-field>
 						<v-textarea 
 							name="short_description"
 							v-model="category.short_description" 
@@ -134,6 +144,10 @@ export default {
 			shortDescriptionRules: [
                 v => !!v || 'Vui lòng nhập mô tả ngắn',
 			],
+			slug: '',
+			slugRules: [
+                v => !!v || 'Vui lòng nhập slug chuyên mục',
+			],
 			descriptionRules: [
                 v => !!v || 'Vui lòng nhập mô tả',
 			],
@@ -154,6 +168,12 @@ export default {
 	},
 	mixins: [],
 	methods: {
+		createSlug() {
+			if (this.category.name) {
+				let slug = this.buildSlug(this.category.name);
+				this.category.slug = slug
+			}
+		},
 		save() {
 			if (this.$refs.form.validate()) {
                 this.loader = 'loading'

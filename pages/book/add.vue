@@ -237,7 +237,7 @@ export default {
 			],
 			slug: '',
 			slugRules: [
-                v => !!v || 'Vui lòng nhập giá sách',
+                v => !!v || 'Vui lòng nhập slug sách',
 			],
 			nameRules: [
                 v => !!v || 'Vui lòng nhập tên sách',

@@ -36,9 +36,10 @@ router.post('/categories/edit', function(req, res) {
     const name = req.body.category.name
     const shortDescription = req.body.category.short_description
     const description = req.body.category.description
+    const slug = req.body.category.slug
 
     //console.log(users);
-    let sql = `UPDATE categories SET categories.name = '${name}', categories.short_description =  '${shortDescription}', categories.description =  '${description}', categories.status =  '${status}' WHERE categories.id = '${id}'`
+    let sql = `UPDATE categories SET categories.name = '${name}', categories.slug = '${slug}', categories.short_description =  '${shortDescription}', categories.description =  '${description}', categories.status =  '${status}' WHERE categories.id = '${id}'`
     let query = db.query(sql, (err) => {
         if (err) {
             //throw err;
@@ -86,8 +87,9 @@ router.post('/categories/add', function(req, res) {
     const name = req.body.category.name
     const shortDescription = req.body.category.short_description
     const description = req.body.category.description
+    const slug = eq.body.category.slug
 
-    let category = { name: name, status: status, short_description: shortDescription, description: description }
+    let category = { name: name, status: status, slug: slug, short_description: shortDescription, description: description }
     //console.log(users);
     let sql = `INSERT INTO categories SET ?`
     let query = db.query(sql, category, (err, category) => {

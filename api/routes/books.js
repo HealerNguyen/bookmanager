@@ -44,6 +44,7 @@ router.post('/books/edit', function(req, res) {
     let query = db.query(sql, (err) => {
         if (err) {
             //throw err;
+            console.log(err)
             res.json({msg: 'Ops! Đã có lỗi xảy ra', stt: false})
         } else {  
             res.json({msg: 'Chỉnh sửa sách thành công', stt: true})

@@ -54,6 +54,16 @@
 							
 							color="green"
 						></v-text-field>
+						<v-text-field 
+							name="slug"
+							v-model="category.slug" 
+							label="Nhập slug chuyên mục" 
+							type="text"
+							:rules="slugRules"
+							required
+							readonly
+							color="green"
+						></v-text-field>
 						<v-textarea 
 							name="short_description"
 							v-model="category.short_description" 
@@ -143,6 +153,10 @@ export default {
 			statusRules: [
                 v => !!v || 'Vui lòng nhập trạng thái',
 			],
+			slug: '',
+			slugRules: [
+                v => !!v || 'Vui lòng nhập slug chuyên mục',
+			],
 			status: null,
 			statuses: [
 				{tentt: 'Test', matt: '0'},
@@ -158,6 +172,12 @@ export default {
 	},
 	mixins: [],
 	methods: {
+		createSlug() {
+			if (this.category.name) {
+				let slug = this.buildSlug(this.category.name);
+				this.category.slug = slug
+			}
+		},
 		getCategoryById() {
 			let id = this.$route.params.id
 			if (id) {

@@ -84,8 +84,7 @@
 			
 			<v-spacer></v-spacer>
 
-			<v-toolbar-items class="hidden-sm-and-down" v-if="authUser.role != 1">
-				<v-btn flat v-bind:to="{name: 'vi-freebies'}">Freebies</v-btn>
+			<v-toolbar-items class="hidden-sm-and-down">
 				<v-btn flat v-bind:to="{name: 'vi-books'}">Sách</v-btn>
 				<v-btn flat v-bind:to="{name: 'vi-categories'}">Chuyên mục</v-btn>
 				<v-btn flat v-bind:to="{name: 'vi-introduce'}">Giới thiệu</v-btn>
