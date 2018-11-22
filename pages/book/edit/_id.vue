@@ -72,6 +72,15 @@
 							required
 							color="green"
 						></v-text-field>
+						<v-text-field 
+							name="count"
+							v-model="book.count" 
+							label="Nhập số lượng sách" 
+							type="number"
+							:rules="countRules"
+							required
+							color="green"
+						></v-text-field>
 						<v-select
 							:items="authors"
 							v-model="author"
@@ -229,6 +238,10 @@ export default {
             loading: false,
 			book: {},
 			price: '',
+			count: '',
+			countRules: [
+				v => !!v || 'Vui lòng nhập số lượng sách',
+			],
 			priceRules: [
                 v => !!v || 'Vui lòng nhập giá sách',
             ],
@@ -377,6 +390,12 @@ export default {
   .test {
 	  top: 64px;
 	  padding-left: 15px !important;
+  }
+  #file {
+	position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0;
   }
   @media only screen and (max-width: 768px) {
 	  .test {

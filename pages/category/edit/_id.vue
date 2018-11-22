@@ -51,7 +51,7 @@
 							autofocus
 							:rules="nameRules"
 							required
-							
+							v-on:input="createSlug()"
 							color="green"
 						></v-text-field>
 						<v-text-field 

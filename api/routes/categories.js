@@ -45,7 +45,7 @@ router.post('/categories/edit', function(req, res) {
             //throw err;
             res.json({msg: 'Ops! Đã có lỗi xảy ra', stt: false})
         } else {  
-            res.json({msg: 'Them moi chuyen muc thành công', stt: true})
+            res.json({msg: 'Chỉnh sửa chuyên mục thành công', stt: true})
         }
     })
 })
@@ -76,7 +76,7 @@ router.post('/categories/delete', function(req,res) {
             //throw err;
             res.json({msg: 'Ops! Đã có lỗi xảy ra', stt: false})
         } else {  
-            res.json({msg: 'Xoa chuyen muc thành công', stt: true})
+            res.json({msg: 'Xóa chuyên mục thành công', stt: true})
         }
     })
 })
@@ -97,9 +97,58 @@ router.post('/categories/add', function(req, res) {
             //throw err;
             res.json({msg: 'Ops! Đã có lỗi xảy ra', stt: false})
         } else {  
-            res.json({msg: 'Them moi chuyen muc thành công', stt: true})
+            res.json({msg: 'Thêm mới chuyên chmục thành công', stt: true})
         }
     })
+})
+
+//Get book by category slug
+router.get('/categories/slug/books', function(req, res) {
+    const slug = req.query.slug
+    $dataPerRow = 5;
+    $totalRows = 0;
+    $pageNumber = req.query.page;
+    $offset = $pageNumber * $dataPerRow;
+
+    if (slug) {
+        let sql = `SELECT id, name FROM categories WHERE slug = '${slug}'`
+        let query = db.query(sql, (err, id) => {
+            if (err) {
+                res.json({msg: 'Ops! Đã có lỗi xảy ra', stt: false})
+            } else {
+                // console.log(id);
+                let cateId = id[0].id
+                let sqll = `SELECT * FROM books WHERE books.category_id = '${cateId}' LIMIT ${$dataPerRow} OFFSET ${$offset}`
+                let queryl = db.query(sqll, (err, books) => {
+
+                    if (err) {
+                        //throw err;
+                        res.json({msg: 'Ops! Đã có lỗi xảy ra', stt: false})
+                    } else {  
+                        $totalRows = books.length
+                        $isShow = false;
+                        $totalPage = parseInt($totalRows / $dataPerRow);
+                        if ($totalRows % $dataPerRow > 0) {
+                            $totalPage += 1;
+                        }
+                        if ($pageNumber >= ($totalPage - 1)) {
+                            $isShow = false;
+                        } else {
+                            $isShow = true;
+                        }
+                        for (i in books) {
+                            books[i].created_date = formatDateTime(books[i].created_date)
+                            books[i].updated_date = formatDateTime(books[i].updated_date)
+                        }
+                        res.json({books: books,id: id, isShow: $isShow, totalRows: $totalRows, stt: true})
+                    }
+                })
+            }
+        })
+    } else {
+        
+    }
+
 })
 
 //GET categories 

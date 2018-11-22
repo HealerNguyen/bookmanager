@@ -81,7 +81,7 @@
                         <div><p class="subheading">{{ cate.short_description }}</p></div>
                     </v-card-title>
                     <v-card-actions>
-                        <v-btn flat dark>Chi tiết</v-btn>
+                        <v-btn flat dark v-bind:to="{name: 'category-slug', params: {slug: cate.slug}}">Chi tiết</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>

@@ -42,12 +42,14 @@ Vue.use(Vuex)
 const LOGIN = "LOGIN";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
+const CART = 'CART';
 
 const store = () => {
     return new Vuex.Store({
         state: {
             isLoggedIn: false,
-            authUser: ''
+            authUser: '',
+            cart: '',
         },
         mutations: {
             [LOGIN](state) {
@@ -61,6 +63,9 @@ const store = () => {
             [LOGOUT](state) {
                 state.isLoggedIn = false;
                 state.authUser = ''
+            },
+            [CART](state, creds) {
+                state.cart = creds
             }
         },
         actions: {
@@ -84,6 +89,18 @@ const store = () => {
                     }, 2000);
                 });
             },
+            cart({
+                state,
+                commit,
+                rootState
+            }, creds) {
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        commit(CART, creds);
+                        resolve();
+                    }, 2000);
+                });
+            },
             logout({
                 commit
             }) {
@@ -96,6 +113,9 @@ const store = () => {
             },
             authUser: state => {
                 return state.authUser;
+            },
+            cart: state => {
+                return state.cart;
             }
         }
     })

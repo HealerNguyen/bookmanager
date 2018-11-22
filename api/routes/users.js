@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const csrf = require('csurf')
+const fs = require("fs")
 
 const csrfProtection = csrf({ cookie: true })
 const jwt = require('jsonwebtoken')
@@ -233,6 +234,8 @@ router.post('/users/login', (req, res) => {
     const email = req.body.email
     const password = req.body.password
     const clientId = req.body.clientId
+    const clientUnique = req.body.clientUnique
+    // console.log(clientUnique)
 
     let sql = `SELECT * FROM users  WHERE users.email = '${email}'`
 
@@ -271,7 +274,7 @@ router.post('/users/login', (req, res) => {
 
     let day = moment().format('YYYY-MM-DD hh:mm:ss');
 
-    let user = { email: email, client_id: clientId, last_login: day}
+    let user = { email: email, client_id: clientId, json: JSON.stringify(clientUnique), last_login: day}
     let sqll = `INSERT INTO user_sessions SET ?`
     let queryl = db.query(sqll, user, (err, user) => {
         if (err) {
@@ -359,6 +362,58 @@ router.post('/users/register', (req, res) => {
             res.json({msg: 'Ops! Đã có lỗi xảy ra', stt: false})
         } else {
             
+        }
+    })
+})
+
+
+
+router.get('/users/get-user-session', function(req, res) {
+    //console.log(req)
+    $dataPerRow = 1;
+    $totalRows = 0;
+    $pageNumber = req.query.page;
+    $email = req.query.email;
+
+    $offset = $pageNumber * $dataPerRow;
+    
+    let sql =   `SELECT * FROM user_sessions WHERE user_sessions.email = '${$email}' `
+    //console.log(sql)
+    //check for query search
+    //get total data
+    let query = db.query(sql, (err, userLoginSessions) => {
+        if (err) {
+            throw err;
+        } else {
+            $totalRows = userLoginSessions.length
+            sql += ` ORDER BY created_date DESC LIMIT ${$dataPerRow} OFFSET ${$offset}`
+
+            //console.log(sql)
+            let query1 = db.query(sql, (err, userLoginSessions) => {
+                if (err) {
+                    throw err;
+                } else {
+                    for (i in userLoginSessions) {
+                        userLoginSessions[i].created_date = formatDateTime(userLoginSessions[i].created_date)
+                        userLoginSessions[i].updated_date = formatDateTime(userLoginSessions[i].updated_date)
+                        userLoginSessions[i].last_login = moment(userLoginSessions[i].last_login.toISOString().replace(/T/, ' ').replace(/\..+/, '')).format('DD/MM/YYYY hh:mm:ss')
+                    }
+                    $isShow = false;
+                    $totalPage = parseInt($totalRows / $dataPerRow);
+                    if ($totalRows % $dataPerRow > 0) {
+                        $totalPage += 1;
+                    }
+                    if ($pageNumber >= ($totalPage - 1)) {
+                        $isShow = false;
+                    } else {
+                        $isShow = true;
+                    }
+                    // them data o tren const van chay binh thuong --
+                    // console.log($totalRows + '---')
+                    res.json({userLoginSessions: userLoginSessions, isShow: $isShow, totalRows: $totalRows})
+                }
+            })
+
         }
     })
 })

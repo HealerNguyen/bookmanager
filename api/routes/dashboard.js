@@ -31,9 +31,10 @@ router.get('/dashboard/count', function(req, res) {
     let sqll =   `SELECT COUNT(*) as total FROM users WHERE users.role = 0`
     let sqlll =   `SELECT COUNT(*) as total FROM authors`
     let sqllll =   `SELECT COUNT(*) as total FROM books`
+    let sqlllll =   `SELECT COUNT(*) as total FROM borrow_books`
 
     let query = db.query(`SELECT COUNT(*) as total FROM categories; SELECT COUNT(*) as total FROM users WHERE users.role = 0;
-    SELECT COUNT(*) as total FROM authors; SELECT COUNT(*) as total FROM books`, (err, count) => {
+    SELECT COUNT(*) as total FROM authors; SELECT COUNT(*) as total FROM books; SELECT COUNT(*) as total FROM borrow_books`, (err, count) => {
         if (err) {
             throw err;
         } else {

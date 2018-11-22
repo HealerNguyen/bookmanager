@@ -181,13 +181,13 @@
 												color="primary" 
 												class="white--text" 
 												round 
-												v-bind:to="{name: 'index'}"
+												v-bind:to="{name: 'vi-books'}"
 											><v-icon>import_contacts</v-icon> Mượn sách</v-btn>
-											<v-btn 
+											<!-- <v-btn 
 												color="red" 
 												class="white--text" 
 												round 
-											><v-icon>face</v-icon> Thay avatar</v-btn>
+											><v-icon>face</v-icon> Thay avatar</v-btn> -->
 										</v-card-actions>
 									</v-form>
 								</v-card>
@@ -203,8 +203,56 @@
 					id="tab-1"
 				>
 					<v-card flat>
+						<v-card-title primary-title class="pt-0">
+							<v-layout row wrap>
+								<v-flex xs12 sm12 md12 lg12>
+									<!-- <a class="sum-record">Tổng số: 9</a> -->
+									<v-btn small class="btn-sum btn-green white--text" style="text-transform: unset">Tổng số: {{ totalRows }}</v-btn>
+									<v-btn small class="btn-sum white--text" color="info"  style="text-transform: unset">Đang mượn: {{ borrowing }}</v-btn>
+									<v-btn small class="btn-sum white--text" color="red" style="text-transform: unset">Đã trả: {{ borrowDone }}</v-btn>
+								</v-flex>
+								<!-- <v-flex xs6 sm6 md6 lg6  class="text-xs-right">
+									<v-btn small class="btn-green white--text" v-bind:to="{name: 'book-add'}"><v-icon>add_circle</v-icon>&nbsp; Thêm mới</v-btn>
+								</v-flex> -->
+								<v-flex xs12 sm12 md12 lg12 xl12>
+									<v-divider></v-divider>
+								</v-flex>
+							</v-layout>
+						</v-card-title>
 						<v-card-text>
-							sach 
+							<v-layout row wrap>
+								<div class="table__overflow" style="width: 100%;">
+									<table class="table" style="width: 100%;">
+										<thead>
+											<th>#</th>
+											<th>Tên sách</th>
+											<th>Trạng thái</th>
+											<th>Ngày mượn</th>
+											<th>Ngày trả(dự tính) </th>
+											<th>Ngày trả(thực tế) </th>
+											<th>Ghi chú </th>
+											<!-- <th>Mô tả</th>
+											<th>Mô tả ngắn</th>
+											<th>Giá</th>
+											
+											<th>Trạng thái</th>
+											<th>Ngày tạo</th>
+											<th>Thao tác</th> -->
+										</thead>
+										<tbody class="text-xs-center">
+											<tr style="text-align: center" v-for="(book , index) in borrowBooks" :key="index">
+												<td>{{ index + 1 }}</td>
+												<td>{{ JSON.parse(book.json).name }}</td>
+												<td>{{ book.status == '1' ? 'Đã trả' : 'Đang mượn' }}</td>
+												<td>{{ book.created_date }}</td>
+												<td>{{ book.to_date }}</td>
+												<td>{{ book.real_date ? book.real_date : '-' }}</td>
+												<td>{{ book.note }}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</v-layout>
 						</v-card-text>
 					</v-card>
 				</v-tab-item>
@@ -214,8 +262,69 @@
 					id="tab-2"
 				>
 					<v-card flat>
+						<v-card-title primary-title class="pt-0">
+							<v-layout row wrap>
+								<v-flex xs12 sm12 md12 lg12>
+									<!-- <a class="sum-record">Tổng số: 9</a> -->
+									<v-btn small class="btn-sum btn-green white--text" style="text-transform: unset">Đã đăng nhập: {{ totalRowsLogin }} lần</v-btn>
+									<!-- <v-btn small class="btn-sum white--text" color="info"  style="text-transform: unset">Đang mượn: {{ borrowing }}</v-btn> -->
+									<!-- <v-btn small class="btn-sum white--text" color="red" style="text-transform: unset">Đã trả: {{ borrowDone }}</v-btn> -->
+								</v-flex>
+								<!-- <v-flex xs6 sm6 md6 lg6  class="text-xs-right">
+									<v-btn small class="btn-green white--text" v-bind:to="{name: 'book-add'}"><v-icon>add_circle</v-icon>&nbsp; Thêm mới</v-btn>
+								</v-flex> -->
+								<v-flex xs12 sm12 md12 lg12 xl12>
+									<v-divider></v-divider>
+								</v-flex>
+							</v-layout>
+						</v-card-title>
 						<v-card-text>
-							dang nhap
+							<v-layout row wrap>
+								<div class="table__overflow" style="width: 100%;">
+									<table class="table" style="width: 100%;">
+										<thead>
+											<th>#</th>
+											<th>Tài khoản đăng nhập</th>
+											<th>Unique browser</th>
+											<th>Hệ điều hành</th>
+											<th>Trình duyệt</th>
+											<th>Lần đăng nhập cuối</th>
+											<!-- <th>Tên sách</th>
+											<th>Trạng thái</th>
+											<th>Ngày mượn</th>
+											<th>Ngày trả(dự tính) </th>
+											<th>Ngày trả(thực tế) </th>
+											<th>Ghi chú </th> -->
+											<!-- <th>Mô tả</th>
+											<th>Mô tả ngắn</th>
+											<th>Giá</th>
+											
+											<th>Trạng thái</th>
+											<th>Ngày tạo</th>
+											<th>Thao tác</th> -->
+										</thead>
+										<tbody class="text-xs-center">
+											<tr style="text-align: center" v-for="(session , index) in userLoginSessions" :key="index">
+												<td>{{ index + 1 }}</td>
+												<td>{{ session.email}}</td>
+												<td>{{ session.client_id}}</td>
+												<th>{{ session.json ? JSON.parse(session.json).OS : '-' }}</th>
+												<th>{{ session.json ? JSON.parse(session.json).browser : '-' }}</th>
+												<td>{{ session.last_login}}</td>
+												<!-- <td>{{ JSON.parse(book.json).name }}</td>
+												<td>{{ book.status == '1' ? 'Đã trả' : 'Đang mượn' }}</td>
+												<td>{{ book.created_date }}</td>
+												<td>{{ book.to_date }}</td>
+												<td>{{ book.real_date ? book.real_date : '-' }}</td>
+												<td>{{ book.note }}</td> -->
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</v-layout>
+							<v-flex xs12 sm12 md12 lg12 class="text-xs-center" v-if="isShow">
+								<v-btn small color="primary" class="white--text " :loading="loading1" round @click="loadmore()">Xem Thêm</v-btn>
+							</v-flex>
 						</v-card-text>
 					</v-card>
 				</v-tab-item>
@@ -267,9 +376,17 @@ export default {
             colorSnackbar: '',
             loader: null,
 			loading: false,
+			loading1: false,
 			date: null,
 			menu: false,
-			user: {}
+			user: {},
+			borrowBooks: {},
+			totalRows: 0,
+			userLoginSessions: {},
+			page: 0,
+			isShow: false,
+			isLoadMore: false,
+			totalRowsLogin: 0,
 		}
 	},
 	mounted() {
@@ -283,6 +400,66 @@ export default {
       }
     },
     methods: {
+		getAllBooks() {
+			axios.get('/api/books/borrowbooks-bu-user', 
+				{
+					params: {
+						userId: this.user.id,
+					}
+				}
+			).then(response => {
+				console.log(response.data)
+				this.borrowBooks = response.data.borrow_books
+				this.totalRows = response.data.totalRows
+				// this.isShow = response.data.isShow
+				// this.totalRows = response.data.totalRows
+				// if (this.isLoadMore == true)  {
+				// 	this.borrowBooks = this.borrowBooks.concat(response.data.borrow_books);
+				// } else {
+				// 	this.borrowBooks = response.data.borrow_books
+				// }
+			}).catch(err => {
+				console.log(err.response)
+			}).finally(call => {
+				// this.isLoadMore = false
+				// this.loader = null
+				// this.loading1 = false
+			})
+		},
+		getUserSessions() {
+			axios.get('/api/users/get-user-session', 
+				{
+					params: {
+						email: this.user.email,
+						page: this.page
+					}
+				}
+			).then(response => {
+				console.log(response.data)
+				//this.userLoginSessions = response.data.userLoginSessions
+				this.totalRowsLogin = response.data.totalRows
+				this.isShow = response.data.isShow
+				if (this.isLoadMore == true)  {
+					this.userLoginSessions = this.userLoginSessions.concat(response.data.userLoginSessions);
+				} else {
+					this.userLoginSessions = response.data.userLoginSessions
+				}
+			}).catch(err => {
+				console.log(err.response)
+			}).finally(call => {
+				this.isLoadMore = false
+				this.loader = null
+				this.loading1 = false
+			})
+		},
+		loadmore() {
+			this.isLoadMore = true
+			this.page += 1
+			this.loader = 'loading1'
+            const l = this.loader
+			this[l] = !this[l]
+			this.getUserSessions()
+		},
       	save (date) {
         	this.$refs.menu.save(date)
 		},
@@ -297,6 +474,8 @@ export default {
 							this.$router.push('/admin')
 						}
 						this.user = response.data
+						this.getAllBooks()
+						this.getUserSessions()
 						if(response.data.birthday) {
 							console.log(response.data.birthday)
 							this.date = response.data.birthday
@@ -342,7 +521,32 @@ export default {
 				})
 			}
 		}
-    }
+	},
+	computed: {
+		borrowing() {
+			let numB = 0
+			if (process.browser) {
+				$.each(this.borrowBooks, function(key, value) {
+					if (value.status == 0) {
+						numB += 1;
+					}
+				})
+				return numB;
+			}
+			
+		},
+		borrowDone() {
+			let numD = 0
+			if (process.browser) {
+				$.each(this.borrowBooks, function(key, value) {
+					if (value.status == 1) {
+						numB += 1;
+					}
+				})
+			}
+			return numD;
+		}
+	}
 }
 </script>
 <style scoped>
@@ -359,6 +563,10 @@ export default {
   }
   .active-tab--class i {
 	  color: green !important;
+  }
+
+  table td {
+	  font-size: 14px;
   }
   
 

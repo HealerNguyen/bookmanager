@@ -7,7 +7,22 @@
 			app
 			v-model="drawer"
 		>
+			<v-toolbar flat class="transparent" v-if="isLoggedIn">
+				<v-list class="pa-0">
+					<v-list-tile avatar v-bind:to="{name: 'users-account'}">
+						<v-list-tile-avatar color="red">
+								<span class="white--text headline">{{ authUser.avatar }}</span>
+						</v-list-tile-avatar>
+
+						<v-list-tile-content>
+							<v-list-tile-title>{{ authUser.name }}</v-list-tile-title>							
+						</v-list-tile-content>
+						
+					</v-list-tile>
+				</v-list>
+			</v-toolbar>
 			<v-list dense>
+				<v-divider v-if="isLoggedIn"></v-divider>
 				<template v-for="item in items">
 					<v-layout
 						row
@@ -31,7 +46,7 @@
 						:prepend-icon="item.model ? item.icon : item['icon-alt']"
 						append-icon=""
 					>
-						<v-list-tile slot="activator">
+						<v-list-tile slot="activator" v-bind:to="{name: item.router}">
 							<v-list-tile-content>
 								<v-list-tile-title>
 									{{ item.text }}
@@ -53,7 +68,7 @@
 							</v-list-tile-content>
 						</v-list-tile>
 					</v-list-group>
-					<v-list-tile v-else  :key="item.text">
+					<v-list-tile  v-bind:to="{name: item.router}" v-else  :key="item.text">
 						<v-list-tile-action>
 							<v-icon>{{ item.icon }}</v-icon>
 						</v-list-tile-action>
@@ -65,6 +80,21 @@
 					</v-list-tile>
 				</template>
 			</v-list>
+			<v-divider v-if="isLoggedIn"></v-divider>
+			<v-toolbar flat class="transparent" v-if="isLoggedIn" @click="logout()" style="cursor: pointer">
+				<v-list class="pa-0">
+					<v-list-tile avatar>
+						<v-list-tile-avatar>
+								<span class="white--text headline"><v-icon>input</v-icon></span>
+						</v-list-tile-avatar>
+
+						<v-list-tile-content>
+							<v-list-tile-title>Đăng xuất</v-list-tile-title>							
+						</v-list-tile-content>
+						
+					</v-list-tile>
+				</v-list>
+			</v-toolbar>
 		</v-navigation-drawer>
 		<v-toolbar
 			color="darken-3"
@@ -78,7 +108,7 @@
 				<span class="hidden-sm-and-down">Mini library</span> &nbsp;
 				<v-tooltip bottom>
 					<v-icon slot="activator" class="hidden-sm-and-down" @click="returnHome()">visibility</v-icon>
-					<span>Trang chu</span>
+					<span>Trang chủ</span>
 				</v-tooltip>
 			</v-toolbar-title>
 			
@@ -93,13 +123,13 @@
 				<v-btn slot="activator" icon v-if="isLoggedIn">
 					<v-icon>apps</v-icon>
 				</v-btn>
-				<span>Ung dung</span>
+				<span>Ưng dụng</span>
 			</v-tooltip>
 			<v-tooltip bottom>
 				<v-btn slot="activator" icon v-if="isLoggedIn">
 					<v-icon>notifications</v-icon>
 				</v-btn>
-				<span>Thong bao</span>
+				<span>Thông báo</span>
 			</v-tooltip>
 			
 			<v-menu
@@ -153,12 +183,15 @@
 			> Đăng nhập
 			</v-btn>         
 		</v-toolbar>
-		<v-fab-transition>
+		<v-tooltip left>
+			<v-fab-transition slot="activator">
 				<v-btn
 					style="bottom: 10px;"
 					v-show="!isShowTop"
+					id="btn-scroll-topp"
 					class="white--text btn-scroll-top"
 					dark
+					icon
 					fixed
 					bottom
 					right
@@ -167,7 +200,35 @@
 				>
 					<v-icon>keyboard_arrow_up</v-icon>
 				</v-btn>
+
 			</v-fab-transition>
+			<span>Về đầu trang</span>
+		</v-tooltip>
+		<v-btn
+			style="top: 70px;z-index:100"
+			class="white--text btn-scroll-top"
+			dark
+			fixed
+			top
+			right
+			icon
+			v-bind:to="{name: 'users-account'}"
+		>
+			<v-badge
+				overlap
+				color="orange"
+				>
+				<span
+					slot="badge"
+					small
+				>{{ cart }}</span>
+				<v-icon
+					color="white"
+				>
+					shopping_cart
+				</v-icon>
+			</v-badge>
+		</v-btn>
 		<v-content id="scroll-top">
 			<nuxt/>
 		</v-content>
@@ -177,13 +238,36 @@
 <!--load component from '~/components/*.vue'-->
 
 <script>
+if (process.browser) {
+    window.App = null;
+    var scrollTop = $("#btn-scroll-topp");
+	
+	$(window).scroll(function() {
+		var topPos = $(this).scrollTop();
+
+		if (topPos > 100) {
+			$(scrollTop).css("opacity", "1");
+			//window.App.isShowTop = false
+		} else {
+			$(scrollTop).css("opacity", "0");
+			//window.App.isShowTop = true
+		}
+
+	});
+}
 import axios from 'axios'
 export default {
   data: () => ({
 			drawer: false,
-			isShowTop: false,
+			isShowTop: true,
+			testemit: '',
 			items: [
-				{ icon: 'contacts', text: 'Contacts' },
+				{ icon: 'home', text: 'Trang chủ', router: 'index' },
+				{ icon: 'import_contacts', text: 'Sách', router: 'vi-books' },
+				{ icon: 'list', text: 'Chuyên mục', router: 'vi-categories' },
+				{ icon: 'contacts', text: 'Giới thiệu', router: 'vi-introduce' },
+
+
 				// { icon: 'history', text: 'Frequently contacted' },
 				// { icon: 'content_copy', text: 'Duplicates' },
 				// {
@@ -216,7 +300,7 @@ export default {
 			],
 		}),
 		mounted() {
-			
+			window.App = this
 			//console.log(isLoggedIn);
 			//console.log(this.$store.getters)
 		},
@@ -233,7 +317,7 @@ export default {
 			},
 			returnHome() {
 				this.$router.push({name: 'index'})
-			}
+			},
 		},
 		computed: {
 			isLoggedIn() {
@@ -242,6 +326,14 @@ export default {
 			authUser() {
 				return this.$store.getters.authUser;
 			},
+			cart() {
+				let dataCart = this.$store.getters.cart
+				if (dataCart.bookCart) {
+					return dataCart.bookCart.length
+				} else {
+					return 0;
+				}
+			}
 		}
 }
 
@@ -249,6 +341,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+.v-btn--floating {
+	height: 36px !important;
+	width: 36px !important;
+}
 @import '../assets/sass/main.scss';
 </style>

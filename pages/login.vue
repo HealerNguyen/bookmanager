@@ -450,7 +450,8 @@ export default {
                 axios.post("/api/users/login", {
                     password: this.password,
                     email: this.email,
-                    clientId: this.clientUnique.clientId
+                    clientId: this.clientUnique.clientId,
+                    clientUnique: this.clientUnique
                 }).then(response => {
                     if (response.data.stt == true) {
                         axios.get("/api/sessionStatus").then(response => {
@@ -459,7 +460,12 @@ export default {
                                 name: response.data.name,
                                 avatar: response.data.avatar
                             }).then(res => {
-                                this.$router.push('/');
+                                if (window.linkRedirect) {
+                                    this.$router.push({name: window.linkRedirect});
+                                } else {
+                                    this.$router.push('/');
+                                }
+                                
                             }) 
                         })
                     } else {
@@ -495,7 +501,8 @@ export default {
                     clientId: this.clientUnique.clientId,
                     OS: this.clientUnique.OS,
                     browser: this.clientUnique.browser,
-                    image: this.name.charAt(0)
+                    image: this.name.charAt(0),
+                    clientUnique: this.clientUnique
 
                 }).then(response => {
                     console.log(response)
@@ -542,7 +549,8 @@ export default {
                 axios.post("/api/users/login", {
                     password: this.password2,
                     email: this.account.email,
-                    clientId: this.clientUnique.clientId
+                    clientId: this.clientUnique.clientId,
+                    clientUnique: this.clientUnique
                 }).then(response => {
                     if (response.data.stt == true) {
                         axios.get("/api/sessionStatus").then(response => {
@@ -551,7 +559,11 @@ export default {
                                 name: response.data.name,
                                 avatar: response.data.avatar
                             }).then(res => {
-                                this.$router.push('/');
+                                if (window.linkRedirect) {
+                                    this.$router.push({name: window.linkRedirect});
+                                } else {
+                                    this.$router.push('/');
+                                }
                             })
                             
                         })

@@ -77,6 +77,26 @@
                     </v-card-title>
                 </v-card>
             </v-flex>
+
+            <v-flex xs12 sm6 md6 lg4 pa-3>
+                <v-card color="blue-grey darken-2" class="white--text" ripple v-bind:to="{name: 'admin-bookborrow'}">
+                    <v-card-title primary-title>
+                        <div class="headline"><v-icon class="white--text">list</v-icon> &nbsp; Quản lý mượn trả sách</div>
+                        <v-spacer></v-spacer>
+                        <div class="headline">{{ totalBorrow }}</div>
+                    </v-card-title>
+                </v-card>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6 lg4 pa-3>
+                <v-card color="blue-grey darken-2" class="white--text" ripple v-bind:to="{name: 'admin-account'}">
+                    <v-card-title primary-title>
+                        <div class="headline"><v-icon class="white--text">list</v-icon> &nbsp; Tài khoản cá nhân</div>
+                        <v-spacer></v-spacer>
+                        <!-- <div class="headline">{{ totalBorrow }}</div> -->
+                    </v-card-title>
+                </v-card>
+            </v-flex>
         </v-layout>
 	</div>
 </template>
@@ -91,7 +111,8 @@ export default {
             totalCate: '',
             totalBook: '',
             totalAuthor: '',
-            totalUser: ''
+            totalUser: '',
+            totalBorrow: '',
 		}
 	},
 	mounted() {
@@ -109,6 +130,7 @@ export default {
                 this.totalUser = this.countData[1][0].total
                 this.totalAuthor = this.countData[2][0].total
                 this.totalBook = this.countData[3][0].total
+                this.totalBorrow = this.countData[4][0].total
             }).catch(error => {
                 console.log(error)
             })

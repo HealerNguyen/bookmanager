@@ -114,8 +114,9 @@
 		         					<th>Mô tả</th>
 		         					<th>Mô tả ngắn</th>
 									<th>Giá</th>
-									<th>Tác giả</th>
-									<th>Danh mục</th>
+									<th>Số lượng</th>
+									<th>Đã được mượn</th>
+									
 		         					<th>Trạng thái</th>
 		         					<th>Ngày tạo</th>
 		         					<th>Thao tác</th>
@@ -127,9 +128,9 @@
 												<td>{{ book.short_description }}</td>
 												<td>{{ book.description }}</td>
 												<td>{{ book.price }}</td>
-												<td>{{ book.author_id }}</td>
-												<td>{{ book.category_id }}</td>
-												<td v-if="book.status == '0'">Nhap</td>
+												<td>{{ book.count }}</td>
+												<td>{{ book.borrowed ? book.borrowed : '0' }}</td>
+												<td v-if="book.status == '0'">Nháp</td>
 												<td v-if="book.status == '1'">Active</td>
 												<td v-if="book.status == '2'">Deactive</td>
 												<td>{{ book.created_date }}</td>

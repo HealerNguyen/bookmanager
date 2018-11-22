@@ -1,5 +1,8 @@
 const { Nuxt, Builder } = require('nuxt')
 const express = require('express')
+const fs = require("fs")
+
+
 const cookieParser = require('cookie-parser')
 const csrf = require('csurf')
 const bodyParser = require('body-parser')
@@ -19,7 +22,7 @@ const db = mysql.createConnection({
 //connect
 db.connect((err) => {
     if (err) {
-        //throw err;
+        throw err;
     } else {
         console.log('Mysql connected ...');
     }
