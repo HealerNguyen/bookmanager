@@ -11,22 +11,22 @@ const mysql = require('mysql')
     // const session = require('express-session')
 var cookieSession = require('cookie-session')
 
-const db = mysql.createConnection({
-    host: 'db4free.net',
-    user: 'root_vuejs1',
-    password: 'ngtuananh',
-    database: 'test_dbvuejs1',
-    multipleStatements: true,
-});
-// a27630e7
-//connect
-db.connect((err) => {
-    if (err) {
-        throw err;
-    } else {
-        console.log('Mysql connected ...');
-    }
-});
+// const db = mysql.createConnection({
+//     host: 'db4free.net',
+//     user: 'root_vuejs1',
+//     password: 'ngtuananh',
+//     database: 'test_dbvuejs1',
+//     multipleStatements: true,
+// });
+// // a27630e7
+// //connect
+// db.connect((err) => {
+//     if (err) {
+//         throw err;
+//     } else {
+//         console.log('Mysql connected ...');
+//     }
+// });
 
 const csrfProtection = csrf({ cookie: true })
     // Create express instnace
@@ -38,13 +38,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}))
 app.use(cookieParser())
 
 app.set('trust proxy', 1)
-    // app.use(session({
-    // 	userData : {},
-    // 	secret: 'keyboard cat',
-    // 	resave: true,
-    // 	saveUninitialized: true,
-    // 	cookie: { secure: true }
-    // }));
 app.use(cookieSession({
     name: 'session',
     keys: ['key1'],
